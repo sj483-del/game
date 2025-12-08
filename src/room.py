@@ -14,17 +14,34 @@ class Room:
         else:
             print("The room is empty.")
 
-    def combat(self, player, monster):
-        print("\n=== Combat Start ===")
+def combat(self, player, monster):
+    print("\n=== Combat Start ===")
 
-        while player.is_alive() and monster.is_alive():
+    while player.is_alive() and monster.is_alive():
+        print(f"\nYour HP: {player.hp} | {monster.name} HP: {monster.hp}")
+        print("Choose your action:")
+        print("1. Attack")
+        print("2. Flee")
+
+        choice = input("> ")
+
+        if choice == "1":
             player.deal_damage(monster)
             if monster.is_alive():
                 monster.deal_damage(player)
-
-        if player.is_alive():
-            print(f"\nYou defeated the {monster.name}!")
-            self.has_monster = False
+        elif choice == "2":
+            print("You attempt to flee...")
+            if random.random() < 0.5:  # 50% chance to escape
+                print("You successfully escaped!")
+                return
+            else:
+                print("Failed to escape!")
+                monster.deal_damage(player)
         else:
-            print("\nYou have been defeated...")
-# room system
+            print("Invalid choice, try again.")
+
+    if player.is_alive():
+        print(f"\nYou defeated the {monster.name}!")
+        self.has_monster = False
+    else:
+        print("\nYou have been defeated...")
