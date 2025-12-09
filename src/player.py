@@ -1,18 +1,19 @@
 class Player:
-    def __init__(self, name="Hero", hp=20, attack=4):
+    def __init__(self, name, max_hp=20, attack=3):
         self.name = name
-        self.hp = hp
+        self.max_hp = max_hp
+        self.hp = max_hp
         self.attack = attack
-        self.inventory = []
 
     def is_alive(self):
         return self.hp > 0
 
+    def deal_damage(self, target):
+        target.hp -= self.attack
+
     def take_damage(self, amount):
         self.hp -= amount
-        print(f"{self.name} takes {amount} damage! (HP: {self.hp})")
+        if self.hp < 0:
+            self.hp = 0
 
-    def deal_damage(self, target):
-        print(f"{self.name} attacks {target.name} for {self.attack} damage!")
-        target.take_damage(self.attack)
 # player class
