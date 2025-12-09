@@ -1,4 +1,4 @@
-from src.player import Player
+from src.character import Player
 from src.room import Room
 import random
 
