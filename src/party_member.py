@@ -1,12 +1,7 @@
-class PartyMember:
-    def __init__(self, name, hp, attack):
-        self.name = name
-        self.hp = hp
-        self.max_hp = hp
-        self.attack = attack
+# party_member.py
+from character import Character
 
-    def is_alive(self):
-        return self.hp > 0
-
-    def deal_damage(self, target):
-        target.hp -= self.attack
+class PartyMember(Character):
+    def __init__(self, name, race, char_class, level=1, is_player=True):
+        super().__init__(name, race, char_class, level)
+        self.is_player = is_player
